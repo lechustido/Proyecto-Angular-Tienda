@@ -3,11 +3,16 @@ import { Routes, RouterModule } from "@angular/router";
 
 //Se importan nuestros propios controladores
 import { IndexComponent } from "./index/index.component";
+import { TiendaComponent } from "./tienda/tienda.component";
+import { ProductoComponent } from "./producto/producto.component";
 
 
 const appRoutes: Routes = [
     {path: '', component: IndexComponent},
     {path: 'index', component: IndexComponent},
+    {path: 'tienda', component: TiendaComponent},
+    {path: 'producto', component: ProductoComponent},
+    {path: 'producto/:identificador', component: ProductoComponent},
     {path: '**', component: IndexComponent}
 ]
 
