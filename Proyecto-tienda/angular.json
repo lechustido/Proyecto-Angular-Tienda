@@ -36,7 +36,8 @@
               "src/assets/global/css/plugins-md.min.css",
               "src/assets/layouts/layout4/css/layout.min.css",
               "src/assets/layouts/layout4/css/themes/default.min.css",
-              "src/assets/layouts/layout4/css/custom.min.css"
+              "src/assets/layouts/layout4/css/custom.min.css",
+              "src/assets/global/css/component-valoracion.css"
             ],
             "scripts": [
               "src/assets/global/plugins/jquery.min.js",
@@ -147,7 +148,8 @@
               "src/assets/global/css/plugins-md.min.css",
               "src/assets/layouts/layout4/css/layout.min.css",
               "src/assets/layouts/layout4/css/themes/default.min.css",
-              "src/assets/layouts/layout4/css/custom.min.css"
+              "src/assets/layouts/layout4/css/custom.min.css",
+              "src/assets/global/css/component-valoracion.css"
             ],
             "scripts": [
               "/src/assets/global/plugins/jquery.min.js",
