@@ -7,15 +7,30 @@
     height: 20px;
     line-height: 20px;
     font-size: 20px;
+    color: #f39c12;
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.3s;
+  }
+
+  .star-rating-select {
+    display: inline-block;
+  }
+  .star-rating-select a {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
     color: #95a5a6;
     text-decoration: none;
     text-align: center;
     transition: color 0.3s;
   }
-  .star-rating:hover a {
+  .star-rating-select:hover a {
     color: #f39c12;
   }
-  .star-rating:hover a:hover ~ a {
+  .star-rating-select:hover a:hover ~ a {
     color: #95a5a6;
   }
   

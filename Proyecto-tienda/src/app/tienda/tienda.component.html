@@ -30,7 +30,7 @@
                                     <div class="col-md-1"></div>
                                     <div class="col-md-10">
                                         <div class="form-group form-md-line-input has-success">
-                                        <input type="text" class="form-control" id="form_control_1" placeholder="Buscar por nombre del producto...">
+                                        <input type="text" class="form-control" id="form_control_1" placeholder="Buscar por nombre del producto..." [(ngModel)] = "nombreFiltrar">
                                     </div>
                                     <div class="col-md-1"></div>
                                     </div>
@@ -39,12 +39,9 @@
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
                                                 <div class="form-group form-md-line-input has-success"> 
-                                                        <select class="form-control" id="form_control_1">
-                                                            <option value=""></option>
-                                                            <option value="1">Option 1</option>
-                                                            <option value="2">Option 2</option>
-                                                            <option value="3">Option 3</option>
-                                                            <option value="4">Option 4</option>
+                                                        <select class="form-control" id="form_control_1" [(ngModel)] = "categoriaSeleccionada">
+                                                            <option value="nada">Selecciona marca...</option>
+                                                            <option *ngFor = "let categoria of categorias" value = "{{categoria.categoria}}">{{categoria.categoria}}</option>
                                                         </select>
                                                         <label for="form_control_1">Marca</label>
                                                     </div>
@@ -52,23 +49,28 @@
                                         <div class="col-md-1">      
                                         </div>
                                 </div>
-                                <div class="row">
+                                <div class = "row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control" id="form_control_precio_min" placeholder="MIN">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control" id="form_control_precio_max" placeholder="MAX">
-                                                </div>
-                                                <div class="col-md-4">
-                                                        <button class="btn green-haze" type="button">Ir</button>
-                                                </div>
+                                                <label style = "color: #27a4b0" >Precio</label>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <input type="number" class="form-control" id="form_control_precio_min" placeholder="MIN" [(ngModel)] = "precioMin">
                                             </div>
+                                            <div class="col-md-1"> <b>_</b> </div>
+                                            <div class="col-md-5">
+                                                <input type="number" class="form-control" id="form_control_precio_max" placeholder="MAX" [(ngModel)] = "precioMax">
+                                            </div>
+                                            <div class="col-md-1"></div>
                                         </div>
-                                        <div class="col-md-1">      
-                                        </div>
+                                    </div>
+                                    <div class="col-md-1"></div>
                                 </div>
                             </div>
                         </div>
@@ -80,18 +82,26 @@
                             <i class=" icon-layers font-green"></i>
                             <span class="caption-subject font-green bold uppercase">Productos</span>
                         </div>
+                        <div class="actions">
+                            <select class="form-control input-sm" (change) = 'ordenarProductos($event.target.value)'>
+                                <option>Ordenar por...</option>
+                                <option value = "caro">Más caros primero</option>
+                                <option value = "barato">Más baratos primero</option>
+                                <option value = "mValorados">Mejor valorados primero</option>
+                            </select>
+                        </div>(click) = "goProducto()"
                     </div>
                     <div class="portlet-body">
                         <div class="mt-element-card mt-element-overlay">
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor = "let producto of productos">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor = "let producto of productos | filter: nombreFiltrar | filterMarca: categoriaSeleccionada | filterMarca: precioMin : precioMax">
                                     <div class="mt-card-item">
                                         <div class="mt-card-avatar mt-overlay-1">
                                             <img src="../../assets/Imagenes/Productos/{{producto.Imagenprincipal}}.jpg"/>
                                             <div class="mt-overlay">
                                                 <ul class="mt-info">
                                                     <li>
-                                                        <a class="btn default btn-outline" href="javascript:;">
+                                                        <a class="btn default btn-outline"  (click) = "goProducto(producto.idproductos)">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                     </li>
@@ -100,7 +110,7 @@
                                         </div>
                                         <div class="mt-card-content">
                                             <h3 class="mt-card-name">{{producto.nombre}}</h3>
-                                            <p class="mt-card-desc font-grey-mint">{{producto.descripcion}}</p>
+                                            <p class="mt-card-desc font-grey-mint">{{producto.categoria}}</p>
                                              <div class="row">
                                                     <div class="col-md-12">
                                                             <div class="star-rating">

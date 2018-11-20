@@ -80,7 +80,8 @@
               "src/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js",
               "src/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js",
               "src/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js",
-              "src/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
+              "src/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js",
+              "src/assets/apps/scripts/Underscore.js"
             ]
           },
           "configurations": {
@@ -192,7 +193,8 @@
               "/src/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js",
               "/src/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js",
               "/src/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js",
-              "/src/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
+              "/src/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js",
+              "/src/assets/apps/scripts/Underscore.js"
             ],
             "assets": [
               "src/favicon.ico",

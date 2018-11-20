@@ -17,9 +17,9 @@ if($method == "OPTIONS") {
     die();
 }
 
-
+//Permite obtener la lista completa de productos.
 $app ->get("/todosProductos", function() use($app, $db){
-   $sql = 'SELECT nombre,descripcion,precio,valoracion,categoria,Imagenprincipal FROM productos ORDER BY idproductos DESC;';
+   $sql = 'SELECT idproductos,nombre,descripcion,precio,valoracion,categoria,Imagenprincipal FROM productos;';
    mysqli_set_charset($db,"utf8");
    $query = $db -> query($sql);
    $productos = array();
@@ -36,5 +36,41 @@ $app ->get("/todosProductos", function() use($app, $db){
 
    echo json_encode($result);
 });
+
+$app ->get("/productoSeleccionado/:id", function($id) use($app, $db){
+    $sql = 'SELECT idproductos,nombre,descripcion,precio,valoracion,categoria,Imagenprincipal,imagenes FROM productos WHERE idproductos = '.$id;
+    mysqli_set_charset($db,"utf8");
+    $query = $db -> query($sql);
+    $producto = $query -> fetch_assoc();
+ 
+    $result = array(
+        'status' => 'success',
+        'code' => 200,
+        'data' => $producto
+    );
+ 
+    echo json_encode($result);
+ });
+
+//permite obtener una lista completa de las categorias de los productos.
+$app ->get("/todasCategorias", function() use($app, $db){
+    $sql = 'SELECT categoria FROM productos GROUP BY categoria;';
+    mysqli_set_charset($db,"utf8");
+    $query = $db -> query($sql);
+    $categorias = array();
+ 
+    while($categoria = $query -> fetch_assoc()){
+         $categorias[] = $categoria;
+    }
+ 
+    $result = array(
+        'status' => 'success',
+        'code' => 200,
+        'data' => $categorias
+    );
+ 
+    echo json_encode($result);
+ });
+
 
 $app -> run();
