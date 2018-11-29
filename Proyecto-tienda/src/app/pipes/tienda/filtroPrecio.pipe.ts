@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import * as _ from 'Underscore';
 import { ProductoTienda } from "../../tienda/ProductoTienda";
 				
-@Pipe({ name: 'filterMarca'})
+@Pipe({ name: 'filterPrecio'})
 
 export class filtroPrecioPipe implements PipeTransform{
     transform(items: ProductoTienda[], filtermMin: string, filterMax: string): ProductoTienda[] {

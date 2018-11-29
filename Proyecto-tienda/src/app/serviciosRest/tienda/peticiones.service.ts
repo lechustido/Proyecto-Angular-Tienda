@@ -20,4 +20,8 @@ export class PeticionesService{
     getCategorias(){
         return this._http.get(this.url + "todasCategorias").pipe(map(respuesta => respuesta.json()));
     }
+
+    getMarcas(categoria){
+        return this._http.get(this.url + "marcasCategoria/" + categoria).pipe(map(respuesta => respuesta.json()));
+    }
 }

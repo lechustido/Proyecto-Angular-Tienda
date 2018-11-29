@@ -19,7 +19,7 @@ if($method == "OPTIONS") {
 
 //Permite obtener la lista completa de productos.
 $app ->get("/todosProductos", function() use($app, $db){
-   $sql = 'SELECT idproductos,nombre,descripcion,precio,valoracion,categoria,Imagenprincipal FROM productos;';
+   $sql = 'SELECT idproductos,nombre,descripcion,precio,valoracion,categoria,Imagenprincipal,marca FROM productos;';
    mysqli_set_charset($db,"utf8");
    $query = $db -> query($sql);
    $productos = array();
@@ -72,5 +72,24 @@ $app ->get("/todasCategorias", function() use($app, $db){
     echo json_encode($result);
  });
 
+ //permite obtener una lista completa de las marcas de los productos.
+$app ->get("/marcasCategoria/:categoriaParam", function($categoriaParam) use($app, $db){
+    $sql = "SELECT marca FROM productos WHERE categoria = '" .$categoriaParam ."' GROUP BY marca;";
+    mysqli_set_charset($db,"utf8");
+    $query = $db -> query($sql);
+    $marcas = array();
+ 
+    while($marca = $query -> fetch_assoc()){
+         $marcas[] = $marca;
+    }
+ 
+    $result = array(
+        'status' => 'success',
+        'code' => 200,
+        'data' => $marcas
+    );
+ 
+    echo json_encode($result);
+ });
 
 $app -> run();

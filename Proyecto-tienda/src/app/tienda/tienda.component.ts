@@ -18,7 +18,9 @@ export class TiendaComponent {
     //Filtros y ordenacion de los productos
     public ordenacion: string;
     public categorias: Array<string>;
-    /* public categoriaSeleccionada: string; */
+    public marcas: Array<string>;
+    public categoriaSeleccionada: string; 
+    public marcaSeleccionada: string;
 
     constructor(
         private _peticionesService: PeticionesService,
@@ -27,6 +29,9 @@ export class TiendaComponent {
     ){    
         this.productos = new Array<ProductoTienda>();
         this.categorias = [];
+        this.marcas = [];
+        this.categoriaSeleccionada = "nada";
+        this.marcaSeleccionada = "nada";
     }
 
     ngOnInit(){
@@ -51,6 +56,17 @@ export class TiendaComponent {
         )
     }
 
+    seleccionarMarca(categoria){
+        this._peticionesService.getMarcas(categoria).subscribe(
+            result => {
+                this.marcas = result.data;
+            },
+            error => {
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+            }
+        )
+    }
     ordenarProductos(orden){
         switch(orden){
             case 'caro':

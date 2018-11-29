@@ -110,7 +110,7 @@
                         <a href="#tab_1_6" data-toggle="tab"> Help </a>
                     </li>
                 </ul>
-                <div class="tab-content">
+                <div class="tab-content" *ngIf = "producto != undefined">
                     <div class="tab-pane active" id="tab_1_1">
                         <div class="row">
                             <div class="col-md-3">
@@ -138,12 +138,36 @@
                             <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-8 profile-info">
-                                        <h1 class="font-green sbold uppercase">John Doe</h1>
-                                        <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.
-                                            </p>
+                                        <h1 class="font-green sbold uppercase">{{producto.nombre}}</h1>
+                                        <p>{{producto.descripcion}}.</p>
                                         <p>
-                                            <a href="javascript:;"> www.mywebsite.com </a>
+                                           <b>{{producto.precio}} €</b>
                                         </p>
+                                        <div class = "row">
+                                            <div class = "col-md-1" *ngFor = "let imagen of imagenes">
+                                                <a data-toggle="modal"  href="#large"><img src = "../../assets/Imagenes/Productos/{{imagen}}.ico" (mouseover) = "seleccionarFoto(imagen)"></a>
+                                                <div class="modal fade bs-modal-lg" id="large" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <!-- <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                                    <h4 class="modal-title">Modal Title</h4>
+                                                                </div> -->
+                                                                <div class="modal-body" *ngIf = "imagenMostrar != undefined">
+                                                                    <img src = "../../assets/Imagenes/Productos/{{imagenMostrar}}.jpg" width="100%">
+                                                                </div>
+                                                                <!-- <div class="modal-footer">
+                                                                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn green">Save changes</button>
+                                                                </div> -->
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <br>
                                         <ul class="list-inline">
                                             <li>
                                                 <i class="fa fa-map-marker"></i> Spain </li>
@@ -1152,4 +1176,4 @@
             </div>
         </div>
         <!-- END PAGE BASE CONTENT -->
-    </div>  
+    </div> 

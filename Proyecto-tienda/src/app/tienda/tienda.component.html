@@ -39,9 +39,23 @@
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
                                                 <div class="form-group form-md-line-input has-success"> 
-                                                        <select class="form-control" id="form_control_1" [(ngModel)] = "categoriaSeleccionada">
-                                                            <option value="nada">Selecciona marca...</option>
+                                                        <select class="form-control" id="form_control_1" [(ngModel)] = "categoriaSeleccionada"  (change) = "seleccionarMarca($event.target.value) || marcaSeleccionada = 'nada'" >
+                                                            <option value="nada" selected >Selecciona categoría...</option>
                                                             <option *ngFor = "let categoria of categorias" value = "{{categoria.categoria}}">{{categoria.categoria}}</option>
+                                                        </select>
+                                                        <label for="form_control_1">Categoria</label>
+                                                    </div>
+                                        </div>
+                                        <div class="col-md-1">      
+                                        </div>
+                                </div>
+                                <div class="row" *ngIf = "categoriaSeleccionada != 'nada' && categoriaSeleccionada != undefined">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
+                                                <div class="form-group form-md-line-input has-success"> 
+                                                        <select class="form-control" id="form_control_1" [(ngModel)] = "marcaSeleccionada">
+                                                            <option value="nada" selected>Selecciona marca...</option>
+                                                            <option *ngFor = "let marca of marcas" value = "{{marca.marca}}">{{marca.marca}}</option>
                                                         </select>
                                                         <label for="form_control_1">Marca</label>
                                                     </div>
@@ -89,15 +103,15 @@
                                 <option value = "barato">Más baratos primero</option>
                                 <option value = "mValorados">Mejor valorados primero</option>
                             </select>
-                        </div>(click) = "goProducto()"
+                        </div>
                     </div>
                     <div class="portlet-body">
                         <div class="mt-element-card mt-element-overlay">
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor = "let producto of productos | filter: nombreFiltrar | filterMarca: categoriaSeleccionada | filterMarca: precioMin : precioMax">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor = "let producto of productos | filterMarcaCategoria: marcaSeleccionada | filter: nombreFiltrar | filterMarca: categoriaSeleccionada | filterPrecio: precioMin : precioMax">
                                     <div class="mt-card-item">
                                         <div class="mt-card-avatar mt-overlay-1">
-                                            <img src="../../assets/Imagenes/Productos/{{producto.Imagenprincipal}}.jpg"/>
+                                            <img src="../../assets/Imagenes/Productos/{{producto.Imagenprincipal}}.jpg" width = "50" height="50"/>
                                             <div class="mt-overlay">
                                                 <ul class="mt-info">
                                                     <li>

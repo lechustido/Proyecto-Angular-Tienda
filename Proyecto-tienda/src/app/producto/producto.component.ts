@@ -12,13 +12,14 @@ import { PeticionesProductoService } from "../serviciosRest/producto/peticionesP
 export class ProductoComponent{
     public idProductoSeleccionado: string;
     public producto: Producto;
+    public imagenes: Array<string>;
+    public imagenMostrar: string;
 
     constructor( 
         private _route: ActivatedRoute, 
         private _router: Router,
-        private _peticionesService: PeticionesProductoService     
+        private _peticionesService: PeticionesProductoService,
     ){
-        
     }
 
     //Probad a hacerlo con input
@@ -30,12 +31,16 @@ export class ProductoComponent{
         this._peticionesService.getArticulo(this.idProductoSeleccionado).subscribe(
             result => {
                 this.producto = result.data;
-                console.log(this.producto);
+                this.imagenes = this.producto.imagenes.split(",");
             },
             error => {
                 var errorMessage = <any>error;
                 console.log(errorMessage);
             }
-        )
+        ) 
+    }
+
+    seleccionarFoto(foto: string) {
+        this.imagenMostrar = foto;
     }
 }

@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 //Pipes
 import { filtroPipe } from "./pipes/tienda/filtro.pipe";
 import { filtroMarcaPipe } from "./pipes/tienda/filtroMarca.pipe";
+import { filterMarcaCategoria } from "./pipes/tienda/filtro.MarcaCategoria.pipe";
 import { filtroPrecioPipe } from "./pipes/tienda/filtroPrecio.pipe";
 
 import { HeaderComponent } from "./header/header.component";
@@ -26,6 +27,7 @@ import { ProductoComponent } from "./producto/producto.component";
     filtroPipe,
     filtroMarcaPipe,
     filtroPrecioPipe,
+    filterMarcaCategoria,
     HeaderComponent,
     FooterComponent,
     IndexComponent,

@@ -8,7 +8,7 @@ import { ProductoComponent } from "./producto/producto.component";
 
 
 const appRoutes: Routes = [
-    {path: '', component: IndexComponent},
+    {path: '', component: TiendaComponent},
     {path: 'index', component: IndexComponent},
     {path: 'tienda', component: TiendaComponent},
     {path: 'producto', component: ProductoComponent},
